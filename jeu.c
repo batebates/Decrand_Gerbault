@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
-#include <unistd.h>
 #include "grille.h"
 #define N 4
 #define M 4
@@ -13,21 +11,24 @@ int search_mot_dico(char mot_chercher[tmax],char dico[tmax]){
     char carac_dico;
     char mot[tmax];
     int k=0;
-    do{
-        carac_dico=fgetc(dico_resultat);
-        if(carac_dico=='\n'){
-            mot[k]='\0';
-            if(strcmp(mot_chercher,mot)==0){
-                    fclose(dico_resultat);
-                    return 1;
-            }
-            k=0;
-        }
-        else {
+    carac_dico=fgetc(dico_resultat);
+    while(carac_dico != EOF){
+        if(carac_dico!='\n'){
             mot[k]=carac_dico;
             k++;
+            
         }
-    }while(carac_dico != EOF);
+        else {
+            mot[k]='\0';
+            if(strcmp(mot_chercher,mot)==0){
+                fclose(dico_resultat);
+                return 1;
+            }
+            k=0;
+            
+        }
+        carac_dico=fgetc(dico_resultat);
+    }
     fclose(dico_resultat);
     return 0;
 }
@@ -42,24 +43,23 @@ int add_mot_dico(char mot[tmax],char dico[tmax]){
 int jeu(char grille[N][M]){
     char mot_joueur[tmax];
     int score=0;
-    while(!kbhit())
-    {
-        printf("\nMot?:");
-        scanf("%s",mot_joueur);
+    printf("\nMot?:");
+    scanf("%s",mot_joueur);
+    printf("tamer");
+    while(mot_joueur[0]!='Q'){
         if(search_mot_dico(mot_joueur,"dico_resultat.txt") && !search_mot_dico(mot_joueur,"dico_trouve.txt")){
+            int n;
+            scanf("%i",&n);
                 printf("\nLe mot est valide");
                 add_mot_dico(mot_joueur,"dico_trouve.txt");
-                score += strlen(mot_joueur);
+                score = score+strlen(mot_joueur);
 
 
         }
         else printf("\nLe mot n'est pas valide");
         affichage_grille(grille);
-        if(clock() >= 120000)/*2minutes*/
-        {
-            printf("\n Le temps est ecoule",mot_joueur);
-            break;
-        }
+       printf("\nMot?:");
+       scanf("%s",mot_joueur);
     }
     remove("dico_trouve.txt");
     remove("dico_resultat.txt");
