@@ -5,13 +5,11 @@
 //  Created by Decrand Baptiste on 17/10/2015.
 //
 //
-
-#define N 4
-#define M 4
+#include "../include/struct.h"
 #ifndef DICO_H_INCLUDED
 #define DICO_H_INCLUDED
 
-int nym(int occ[26],int occ_mot[26]);
-void liste_mots_trouve(char grille[N][M]);
+void liste_mots_trouve(t_lettre grille[N][M]);
+void trier_score_decroissant();
 
 #endif // DICO_H_INCLUDED

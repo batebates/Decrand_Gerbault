@@ -8,11 +8,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define N 4
-#define M 4
-#include "dico.h"
-#include "grille.h"
-#include "jeu.h"
+#include "../../include/dico.h"
+#include "../../include/grille.h"
+#include "../../include/struct.h"
 
 
 /**
@@ -21,11 +19,13 @@
  */
 int main(){
     /*Initialisation*/
+	    printf("\n\n%d\n\n",N);
     printf("*******RUZZLE*******");
-    char grille[N][M];
+    t_lettre grille[N][M];
     creation_grille(grille);
     /*traitement*/
     affichage_grille(grille);
     liste_mots_trouve(grille);
+	trier_score_decroissant();
     return 0;
 }

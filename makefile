@@ -1,10 +1,41 @@
-ruzzle.exe: dico.o jeu.o main.o grille.o
-	gcc -o ruzzle.exe dico.o jeu.o main.o grille.o 
-dico.o: dico.c
-	gcc -c dico.c -Wall -W
-grille.o: grille.c jeu.h
-	gcc -c grille.c -Wall -W
-jeu.o: jeu.c
-	gcc -c jeu.c -Wall -W
-main.o: main.c dico.h grille.h jeu.h
-	gcc -c main.c dico.h grille.h jeu.h -Wall -W
+CC=gcc
+FLAG=-Wall -W
+OBJ= dico.o main.o grille.o
+OBJTEST= dico_test.o main_test.o grille_test.o
+JOB= ./include/*.h
+SRC=./src/
+TEST=./src/tests/
+
+./bin/ruzzle.exe: ${OBJ}
+	${CC} -o ./bin/ruzzle.exe ${OBJ}
+struct.o: ${SRC}struct.c ${JOB}
+	${CC} -c ${SRC}struct.c ${FLAG} 
+
+dico.o: ${SRC}dico.c
+	${CC} -c ${SRC}dico.c ${FLAG} 
+
+grille.o: ${SRC}grille.c
+	${CC} -c ${SRC}grille.c ${FLAG} 
+
+main.o: ${SRC}main.c ${JOB}
+	${CC} -c ${SRC}main.c ${JOB} ${FLAG} 
+
+./tests/ruzzle_test.exe: ${OBJTEST}
+	${CC} -o ./tests/ruzzle_test.exe ${OBJTEST}
+struct_test.o: ${TEST}struct_test.c ${JOB}
+	${CC} -c ${TEST}struct_test.c ${FLAG} 
+
+dico_test.o: ${TEST}dico_test.c
+	${CC} -c ${TEST}dico_test.c ${FLAG} 
+
+grille_test.o: ${TEST}grille_test.c
+	${CC} -c ${TEST}grille_test.c ${FLAG} 
+
+main_test.o: ${TEST}main_test.c ${JOB}
+	${CC} -c ${TEST}main_test.c ${JOB} ${FLAG}
+	
+	
+ 
+
+clean:
+	rm -rf *.o
