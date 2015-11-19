@@ -12,6 +12,6 @@
 #define DICO_H_INCLUDED
 
 int nym(int occ[26],int occ_mot[26]);
-void liste_mots_trouve(char grille[N][M]);
+void tri_mot(char grille[N][M]);
 
 #endif // DICO_H_INCLUDED
