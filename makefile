@@ -5,9 +5,11 @@ OBJTEST= dico_test.o main_test.o grille_test.o
 JOB= ./include/*.h
 SRC=./src/
 TEST=./src/tests/
+all:ruzzle.exe test.exe clean doc
 
-./bin/ruzzle.exe: ${OBJ}
-	${CC} -o ./bin/ruzzle.exe ${OBJ}
+ruzzle.exe: ${OBJ}
+	${CC} -o ./bin/ruzzle.exe ${OBJ} ${FLAG}
+
 struct.o: ${SRC}struct.c ${JOB}
 	${CC} -c ${SRC}struct.c ${FLAG} 
 
@@ -20,8 +22,9 @@ grille.o: ${SRC}grille.c
 main.o: ${SRC}main.c ${JOB}
 	${CC} -c ${SRC}main.c ${JOB} ${FLAG} 
 
-./tests/ruzzle_test.exe: ${OBJTEST}
-	${CC} -o ./tests/ruzzle_test.exe ${OBJTEST}
+test.exe: ${OBJTEST}
+	${CC} -o ./tests/test.exe ${OBJTEST} ${FLAG} -lcunit
+
 struct_test.o: ${TEST}struct_test.c ${JOB}
 	${CC} -c ${TEST}struct_test.c ${FLAG} 
 
@@ -33,9 +36,8 @@ grille_test.o: ${TEST}grille_test.c
 
 main_test.o: ${TEST}main_test.c ${JOB}
 	${CC} -c ${TEST}main_test.c ${JOB} ${FLAG}
-	
-	
- 
-
 clean:
 	rm -rf *.o
+	rm -rf doc
+doc:
+	doxygen

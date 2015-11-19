@@ -171,7 +171,7 @@ void underscore(){
 
     /*Initialisation*/
     int i;
-    for(i=0;i<M;i++)printf("-----------");
+    for(i=0;i<M;i++)printf("--------");
 }
 
 /**

@@ -1,5 +1,5 @@
 /**
-\file dico.c
+\file dico_test.c
 \brief reunie les fonctions recherchant les mots dans une grille à l'aide d'un dictionnaire
 \author Baptiste Decrand & Maxime Gerbault
 \version 0.5
