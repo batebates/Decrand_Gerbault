@@ -14,7 +14,8 @@
 	->Le programme est compatible actuellement sur mac,linux et windows
 
 ##Execution
-	Pour executer le programme,placer vous dans le fichier bin et executer le fichier ruzzle.exe depuis une invite de commande
+	Pour executer le programme,placer vous dans le fichier bin
+	et executer le fichier ruzzle.exe depuis une invite de commande
 
 ##Etat des fonctions
 #dico.c
