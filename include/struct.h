@@ -14,6 +14,10 @@ typedef struct{int x;int y;}t_coord;
 */
 typedef struct{char mot[t_max] ;int score;}t_valeurmot;
 typedef enum {rien, dl, tl, dw, tw} t_bonus;
+/**
+\struct t_lettre
+\brief un mot avec son score
+*/
 typedef struct {char c; int pts; t_bonus bonus;} t_lettre;
 
 #endif

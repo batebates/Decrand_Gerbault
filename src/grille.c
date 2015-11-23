@@ -2,7 +2,7 @@
 \file grille.c
 \brief reunie les fonctions gerant la grille(creation,affichage...)
 \author Baptiste Decrand & Maxime Gerbault
-\version 0.5
+\version 10
 \date 07/11/2015
 */ 
 

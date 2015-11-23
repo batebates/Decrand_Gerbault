@@ -10,6 +10,9 @@
 #include <stdlib.h>
 #include "./CUnitLocal/include/CUnit/Basic.h"
 #include "./CUnitLocal/include/CUnit/CUnit.h"
+#define N 4
+#define M 4
+#define t_max N*M
 typedef struct{int x;int y;}t_coord;
 typedef struct{char mot[t_max] ;int score;}t_valeurmot;
 typedef enum {rien, dl, tl, dw, tw} t_bonus;
@@ -166,8 +169,8 @@ int recherche_mot_grille(t_valeurmot *mot_dico,t_lettre grille[N][M]){
 					/*TANT QUE tout les chemins ne sont pas teste*/
                     while(chemin_mot_sommet!=-1){
                         if(mot_dico->mot[k]=='\0'){
-                        		calc_score(mot_dico,chemin_mot_pile,&chemin_mot_sommet,grille);
-								return 1;
+
+					return 1;
                         } 
                         chemin(grille,mot_dico->mot[k],&k,chemin_mot_pile,redondance_lettre_pile,&chemin_mot_sommet,&redondance_lettre_sommet); // on cherche le chemin de la prochaine lettre du mot
                     }
@@ -183,28 +186,28 @@ int recherche_mot_grille(t_valeurmot *mot_dico,t_lettre grille[N][M]){
  \brief programme principal
  */
 int main(){
+	CU_pSuite pSuite = NULL;
 	t_lettre grille[4][4]={{{'z',0,0},{'q',0,0},{'t',0,0},{'c',0,0}},
 							{{'u',0,0},{'c',0,0},{'y',0,0},{'a',0,0}},
 								{{'r',0,0},{'i',0,0},{'b',0,0},{'o',0,0}},
 								{{'t',0,0},{'n',0,0},{'e',0,0},{'a',0,0}}};
 	t_valeurmot mot1={"bobine",0};
 	t_valeurmot mot2={"truc",0};
-	t_valeurmot mot2={"tri",0};
-	printf("%d",recherche_mot_grille(&mot,grille));
+	t_valeurmot mot3={"tri",0};
 	void test_grille(void){
-		CU_ASSERT_EQUAL(recherche_mot_grille(&mot1,grille), 0);
+		CU_ASSERT_EQUAL(recherche_mot_grille(&mot1,grille), 1);
 		CU_ASSERT_EQUAL(recherche_mot_grille(&mot2,grille), 1);
 		CU_ASSERT_EQUAL(recherche_mot_grille(&mot3,grille), 1);
 	}
 	
-	    if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
+	if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
     pSuite = CU_add_suite("Suite_1", 0, 0);
     if (!pSuite) {
             CU_cleanup_registry();
             return CU_get_error();
     }
 
-    if (!CU_add_test(pSuite, "test of fprintf()", test_point))
+    if (!CU_add_test(pSuite, "test of fprintf()", test_grille))
     {   CU_cleanup_registry();
     return CU_get_error();
     }

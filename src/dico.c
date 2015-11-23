@@ -2,7 +2,7 @@
 \file dico.c
 \brief reunie les fonctions recherchant les mots dans une grille à l'aide d'un dictionnaire
 \author Baptiste Decrand & Maxime Gerbault
-\version 0.5
+\version 10
 \date 07/11/2015
 */ 
 

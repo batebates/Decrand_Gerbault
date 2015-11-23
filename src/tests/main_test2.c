@@ -10,23 +10,14 @@
 #include <stdlib.h>
 #include "./CUnitLocal/include/CUnit/Basic.h"
 #include "./CUnitLocal/include/CUnit/CUnit.h"
+#define N 4
+#define M 4
+#define t_max N*M
 typedef struct{int x;int y;}t_coord;
 typedef struct{char mot[t_max] ;int score;}t_valeurmot;
 typedef enum {rien, dl, tl, dw, tw} t_bonus;
 typedef struct {char c; int pts; t_bonus bonus;} t_lettre;
 
-/**
- \fn void push(int x,int y,t_coord pile[t_max],int *sommet);
- \brief ajoute les coordonnees x,y a une pile
- \param (coordonnée x,coordonnée y,pile de type t_coord,sommet de la pile)
- */
-void push(int x,int y,t_coord pile[t_max],int *sommet){
-    if(*sommet<t_max-1){
-        *sommet=*sommet+1;
-        pile[*sommet].x=x;
-        pile[*sommet].y=y;
-    }
-}
 
 /**
  \fn void depush(int *sommet);
@@ -39,14 +30,6 @@ void depush(int *sommet){
     }
 }
 
-/**
- \fn void initpile(int *sommet);
- \brief initialise une pile
- \param (sommet de la pile)
- */
-void initpile(int *sommet){
-    *sommet=-1;
-}
 
 /**
  \fn int sommetpile(t_coord pile[t_max],int *sommet,t_coord *adr_coord_pile);
@@ -93,22 +76,22 @@ int calc_score(t_valeurmot *mot_dico,t_coord chemin_mot_pile[t_max],int *adr_che
  \brief programme principal
  */
 int main(){
+	CU_pSuite pSuite = NULL;
 	t_lettre grille[4][4]={{{'z',0,0},{'q',0,0},{'t',0,0},{'c',0,0}},
 							{{'u',0,0},{'c',0,0},{'y',0,0},{'b',0,0}},
 								{{'r',0,0},{'i',0,0},{'b',0,0},{'o',0,0}},
 								{{'t',0,0},{'n',0,0},{'e',0,0},{'a',0,0}}};
 	t_valeurmot mot_dico1={"bobine",0};
 	t_valeurmot mot_dico2={"truc",0};
-	int chemin_mot_pile1[6]={{1,3},{2,3},{2,2},{2,1},{3,1},{3,2}};
-	int chemin_mot_pile2[4]={{0,3},{0,2},{0,1},{1,1},{3,1},{3,2}};
+	t_coord chemin_mot_pile1[6]={{1,3},{2,3},{2,2},{2,1},{3,1},{3,2}};
+	t_coord chemin_mot_pile2[4]={{0,3},{0,2},{0,1},{1,1}};
 	int chemin_mot_sommet1=5;
 	int chemin_mot_sommet2=3;
-	calc_score(&mot_dico1,chemin_mot_pile1,&chemin_mot_sommet,grille);
-	calc_score(&mot_dico1,chemin_mot_pile2,&chemin_mot_sommet,grille);
-	printf("%d",recherche_mot_grille(&mot,grille));
-	void test_grille(void){
-		CU_ASSERT_EQUAL(mot_dico1.score, 0);
-		CU_ASSERT_EQUAL(mot_dico2.score, 1);
+	calc_score(&mot_dico1,chemin_mot_pile1,&chemin_mot_sommet1,grille);
+	calc_score(&mot_dico1,chemin_mot_pile2,&chemin_mot_sommet2,grille);
+	void test_score(void){
+		CU_ASSERT_EQUAL(mot_dico1.score, 10);
+		CU_ASSERT_EQUAL(mot_dico2.score, 2);
 	}
 	
 	    if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
@@ -118,7 +101,7 @@ int main(){
             return CU_get_error();
     }
 
-    if (!CU_add_test(pSuite, "test of fprintf()", test_point))
+    if (!CU_add_test(pSuite, "test of fprintf()", test_score))
     {   CU_cleanup_registry();
     return CU_get_error();
     }

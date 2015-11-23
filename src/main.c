@@ -1,9 +1,9 @@
 /**
  \file TP3.c
  \brief  Ruzzle
- \author Baptiste et Maxime
- \version 4.0.0
- \date 28 octobre 2015
+ \author Baptiste DECRAND et Maxime GERBAULT
+ \version 10
+ \date 23 novembre 2015
  */
 
 #include <stdio.h>
