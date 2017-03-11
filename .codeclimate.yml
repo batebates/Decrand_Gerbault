@@ -1,9 +1,1 @@
-ratings:
-  paths:
-  - src/**
-  - lib/**
-  - "**.rb"
-  - "**.go"
-exclude_paths:
-- spec/**/*
-- "**/vendor/**/*"
+
