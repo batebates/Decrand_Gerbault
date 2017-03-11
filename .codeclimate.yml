@@ -1,1 +1,5 @@
-
+C: true
+exclude_paths:
+- doc/**/*
+- bin/**
+- liste/**

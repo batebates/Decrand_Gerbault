@@ -1,3 +1,5 @@
+<a href="https://lima.codeclimate.com/github/batebates/Ruzzle"><img src="https://lima.codeclimate.com/github/batebates/Ruzzle/badges/gpa.svg" /></a>
+<a href="https://lima.codeclimate.com/github/batebates/Ruzzle"><img src="https://lima.codeclimate.com/github/batebates/Ruzzle/badges/issue_count.svg" /></a>
 
 ###Projet Ruzzle TP Algo avance
 
